@@ -1,17 +1,22 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.0-M3'
+	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'com.google.cloud.tools.jib' version '3.2.1'
 }
 
-group = 'com'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+group = 'com.graphql-java.tutorial'
+version = '0.1.0-SNAPSHOT'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+}
+
+springBoot {
+	mainClass = 'com.graphqljava.tutorial.glossardetails.GlossarDetailsApplication'
 }
 
 repositories {
@@ -41,4 +46,26 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Docker Image Build
+jib {
+	from {
+		image = 'adoptopenjdk/openjdk11:jre-11.0.8_10-alpine'
+	}
+	to {
+		image = 'ghcr.io/ni920/graphql-helloworld/graphqlhelloworld:0.1.0'
+		//credHelper = 'osxkeychain'
+		tags = ['latest']
+		//containerizingMode = 'packaged'
+
+	}
+	container {
+		//jvmFlags = ['-Dmy.property=example.value', '-Xms512m', '-Xdebug']
+		mainClass = 'com.graphqljava.tutorial.glossardetails.GlossarDetailsApplication'
+		ports = ['8090']
+		format = 'OCI'
+		creationTime = 'USE_CURRENT_TIMESTAMP'
+
+	}
 }
