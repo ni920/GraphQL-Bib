@@ -1,0 +1,13 @@
+version: '3.6'
+services:
+  graphql:
+    image: ghcr.io/ni920/graphql-bib/graphqlbib:latest
+    ports:
+      - "8090:8090"
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+        - POSTGRES_USER=test
+        - POSTGRES_PASSWORD=12345
