@@ -5,7 +5,7 @@
     - [Starten des Projekts:](#starten-des-projekts)
     - [Abfragen mittels Query:](#abfragen-mittels-query)
     - [Schema:](#schema)
-    - [DataFetchers:](#datafetchers)
+    - [Docker:](#docker)
 
 Dieses Repository dient dem Aufsetzen eines GraphQL Hello-Worlds.
 
@@ -59,13 +59,6 @@ Das Schema wird in einer Datei `schema.graphql` gespeichert.
 Diese befindet sich im Ordner `src/main/resources`.
 
 ---
-
-### DataFetchers:
-
-Die Daten werden aktuell in der Klasse `GraphQLDataFetchers` angelegt.
-
-
---- 
 
 ### Docker:
 
